@@ -5,13 +5,10 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -128,11 +125,6 @@ public class NewOrderDialog extends JDialog {
 		buttonPane.add(btnCancel);
 	}
 
-	private void update() {
-
-
-	}
-	
 	private void cancelOrder() {
 		
 		this.order = null;
