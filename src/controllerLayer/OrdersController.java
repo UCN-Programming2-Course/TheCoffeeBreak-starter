@@ -2,7 +2,8 @@ package controllerLayer;
 
 import java.util.List;
 
-import model.Order;
+import modelLayer.Order;
+import modelLayer.Product;
 
 public interface OrdersController {
 
@@ -11,4 +12,6 @@ public interface OrdersController {
 	boolean createNewOrder(Order order);
 	
 	boolean setOrderStatusToFinished(Order order);
+
+	List<Product> getAllProducts();
 }

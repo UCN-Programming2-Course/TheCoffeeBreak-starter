@@ -1,4 +1,4 @@
-package gui;
+package guiLayer;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -15,8 +15,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
+
+import controllerLayer.ControllerFactory;
 import controllerLayer.OrdersController;
-import model.Order;
+import modelLayer.Order;
 
 public class MainWindow extends JFrame {
 
@@ -62,7 +64,7 @@ public class MainWindow extends JFrame {
 				// TODO Auto-generated method stub
 				openNewOrderDialog();
 			}
-			
+
 		});
 		panel.add(btnNewOrder);
 
@@ -82,7 +84,8 @@ public class MainWindow extends JFrame {
 
 	private void finishSelectedOrder() {
 
-		if (orderCtrl.setOrderStatusToFinished(listActiveOrders.getSelectedValue())) {
+		Order selectedOrder = listActiveOrders.getSelectedValue();
+		if (selectedOrder != null && orderCtrl.setOrderStatusToFinished(selectedOrder)) {
 
 			update();
 		}
@@ -90,18 +93,26 @@ public class MainWindow extends JFrame {
 
 	private void openNewOrderDialog() {
 
-		NewOrderDialog window = new NewOrderDialog();
-		window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		window.setVisible(true);
-		if(orderCtrl.createNewOrder(window.getOrder())) {
-			
-			update();
-		}		
+		NewOrderDialog dialog = new NewOrderDialog(ControllerFactory.getOrdersController());
+		dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		dialog.setVisible(true);
+
+		if (dialog.isAccepted()) {
+			Order order = dialog.getOrder();
+
+			System.out.println(order.getCustomerName());
+
+			if (orderCtrl.createNewOrder(order)) {
+
+				update();
+			}
+		}
 	}
 
 	public void update() {
 		List<Order> activeOrders = orderCtrl.getActiveOrders();
-		listActiveOrders.setModel(GuiHelpers.mapToListModel(activeOrders));
+		if(activeOrders != null)
+			listActiveOrders.setModel(GuiHelpers.mapToListModel(activeOrders));
 	}
 
 	// Renderer for active orders list

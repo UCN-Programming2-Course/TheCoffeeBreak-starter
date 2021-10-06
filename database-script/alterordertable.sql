@@ -1,0 +1,2 @@
+ALTER TABLE Orders
+ADD Finished DATETIME 
