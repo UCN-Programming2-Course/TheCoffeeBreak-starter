@@ -1,4 +1,4 @@
-package dataAccessLayer.implementations;
+package data.daos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataAccessLayer.DataContext;
-import dataAccessLayer.ProductDao;
-import modelLayer.Product;
+import data.DataContext;
+import data.ProductDao;
+import model.Product;
 
-public class ProductDaoImplementation implements ProductDao {
+public class ProductDaoSQLServer implements ProductDao {
 
 	private final DataContext dataContext;
 
-	public ProductDaoImplementation(DataContext dataContext) {
+	public ProductDaoSQLServer(DataContext dataContext) {
 
 		this.dataContext = dataContext;
 	}
@@ -31,6 +31,7 @@ public class ProductDaoImplementation implements ProductDao {
 			while (rs.next()) {
 			
 				Product p = new Product();
+				p.setId(rs.getInt(1));
 				p.setName(rs.getString(2));
 				p.setDescription(rs.getString(3));
 				p.setPrice(rs.getDouble(4));

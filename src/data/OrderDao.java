@@ -1,8 +1,8 @@
-package dataAccessLayer;
+package data;
 
 import java.util.List;
 
-import modelLayer.Order;
+import model.Order;
 
 public interface OrderDao {
 

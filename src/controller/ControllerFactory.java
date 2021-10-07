@@ -1,6 +1,4 @@
-package controllerLayer;
-
-import controllerLayer.implementations.OrdersControllerImplementation;
+package controller;
 
 public class ControllerFactory {
 

@@ -1,4 +1,4 @@
-package modelLayer;
+package model;
 
 public class OrderLine {
 

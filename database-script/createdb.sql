@@ -32,18 +32,6 @@ CREATE TABLE OrderLines(
 );
 GO 
 
-CREATE OR ALTER TRIGGER InsertOrderLine ON OrderLines
-AFTER INSERT
-AS
-BEGIN 
-	UPDATE OrderLines
-	SET SubTotal = inserted.Quantity * Products.Price
-	FROM inserted
-	JOIN Products ON Products.Id = inserted.ProductId
-	WHERE OrderLines.Id = inserted.Id
-END
-GO 
-
 -- Customers
 INSERT INTO Customers VALUES (1, 'Rick Sanchez', '202-555-0413', 'quisque.ornare@atauctor.edu');
 INSERT INTO Customers VALUES (2, 'Morty Smith', '202-555-0909', 'non.lacinia@ut.com');

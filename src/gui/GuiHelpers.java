@@ -1,4 +1,4 @@
-package guiLayer;
+package gui;
 
 import java.util.List;
 

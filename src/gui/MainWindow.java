@@ -1,4 +1,4 @@
-package guiLayer;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -16,9 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 
-import controllerLayer.ControllerFactory;
-import controllerLayer.OrdersController;
-import modelLayer.Order;
+import controller.ControllerFactory;
+import controller.OrdersController;
+import model.Order;
 
 public class MainWindow extends JFrame {
 
@@ -100,8 +100,6 @@ public class MainWindow extends JFrame {
 		if (dialog.isAccepted()) {
 			Order order = dialog.getOrder();
 
-			System.out.println(order.getCustomerName());
-
 			if (orderCtrl.createNewOrder(order)) {
 
 				update();
@@ -111,8 +109,9 @@ public class MainWindow extends JFrame {
 
 	public void update() {
 		List<Order> activeOrders = orderCtrl.getActiveOrders();
-		if(activeOrders != null)
+		if (activeOrders != null)
 			listActiveOrders.setModel(GuiHelpers.mapToListModel(activeOrders));
+		listActiveOrders.updateUI();
 	}
 
 	// Renderer for active orders list
@@ -124,7 +123,7 @@ public class MainWindow extends JFrame {
 		public Component getListCellRendererComponent(JList<? extends Order> list, Order value, int index,
 				boolean isSelected, boolean cellHasFocus) {
 
-			String cellText = value.getCustomerName();
+			String cellText = value.getCustomer().getName();
 
 			return renderer.getListCellRendererComponent(list, cellText, index, isSelected, cellHasFocus);
 		}

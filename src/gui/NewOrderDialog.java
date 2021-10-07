@@ -1,4 +1,4 @@
-package guiLayer;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -21,10 +21,12 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import controllerLayer.OrdersController;
-import modelLayer.Order;
-import modelLayer.OrderLine;
-import modelLayer.Product;
+
+import controller.OrdersController;
+import model.Customer;
+import model.Order;
+import model.OrderLine;
+import model.Product;
 
 public class NewOrderDialog extends JDialog {
 
@@ -71,31 +73,23 @@ public class NewOrderDialog extends JDialog {
 		txtCustomerName = new JTextField();
 		txtCustomerName.setColumns(10);
 		txtCustomerName.setBounds(110, 27, 150, 20);
-		txtCustomerName.getDocument().addDocumentListener(new DocumentListener() {
-
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-
-				updateOrder();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-
-				updateOrder();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-
-				updateOrder();
-			}
-
-			private void updateOrder() {
-
-				order.setCustomerName(txtCustomerName.getText());
-			}
-		});
+//		txtCustomerName.getDocument().addDocumentListener(new DocumentListener() {
+//
+//			@Override
+//			public void insertUpdate(DocumentEvent e) {
+//				addCustomer();
+//			}
+//
+//			@Override
+//			public void removeUpdate(DocumentEvent e) {
+//				
+//			}
+//
+//			@Override
+//			public void changedUpdate(DocumentEvent e) {
+//
+//			}
+//		});
 		contentPane.add(txtCustomerName);
 
 		// order items
@@ -257,7 +251,10 @@ public class NewOrderDialog extends JDialog {
 	}
 
 	private void ok() {
-
+		
+		Customer customer = new Customer();
+		customer.setName(txtCustomerName.getText());
+		this.order.setCustomer(customer);
 		this.accepted = true;
 		setVisible(false);
 	}

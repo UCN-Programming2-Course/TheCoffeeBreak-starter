@@ -1,9 +1,9 @@
-package controllerLayer;
+package controller;
 
 import java.util.List;
 
-import modelLayer.Order;
-import modelLayer.Product;
+import model.Order;
+import model.Product;
 
 public interface OrdersController {
 

@@ -1,6 +1,6 @@
-package guiLayer;
+package gui;
 
-import controllerLayer.ControllerFactory;
+import controller.ControllerFactory;
 
 public class Program {
 

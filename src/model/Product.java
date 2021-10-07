@@ -1,7 +1,8 @@
-package modelLayer;
+package model;
 
 public class Product {
 
+	private int id;
 	private String name;
 	private String description;
 	private double price;
@@ -28,5 +29,13 @@ public class Product {
 	
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

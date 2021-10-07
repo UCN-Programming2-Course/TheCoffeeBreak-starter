@@ -1,8 +1,8 @@
-package dataAccessLayer;
+package data;
 
 import java.util.List;
 
-import modelLayer.Product;
+import model.Product;
 
 public interface ProductDao {
 
